@@ -1,0 +1,6 @@
+*.fst
+tests/
+images/
+
+**/.DS_Store
+.idea/
