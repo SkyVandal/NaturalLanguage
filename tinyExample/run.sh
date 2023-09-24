@@ -11,11 +11,13 @@ for i in sources/*.txt; do
 done
 
 # ############ CORE OF THE PROJECT  ############
+# a) 2
+fstconcat compiled/mmm2mm.fst compiled/dumbparser.fst > compiled/mix2numerical.fst
 
-fstconcat compiled/mmm2mm.fst compiled/dumbparser.fst > compiled/concat.fst
-
-
-
+# b) 3
+fstconcat compiled/tradpt2en.fst compiled/dumbparser.fst > compiled/pt2en.fst
+# b) 4
+fstconcat compiled/traden2pt.fst compiled/dumbparser.fst > compiled/en2pt.fst
 
 
 
@@ -32,23 +34,45 @@ done
 
 
 
-# ############      3 different ways of testing     ############
-# ############ (you can use the one(s) you prefer)  ############
+# ############      TESTS     ############
 
 #3 - presents the output with the tokens concatenated (uses a different syms on the output)
 fst2word() {
 	awk '{if(NF>=3){printf("%s",$3)}}END{printf("\n")}'
 }
 
-trans=concat.fst
+trans=en2pt.fst
 echo "\n***********************************************************"
-echo "Testing 5 6 7 8  (output is a string  using 'syms-out.txt')"
+echo "Testing EN2PT"
 echo "*************************************************************"
-for w in "JAN/01/2023"; do
+for w in "MAY/01/2023"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt | fst2word)
     echo "$w = $res"
 done
 
+
+trans=day.fst
+echo "\n***********************************************************"
+echo "Testing DAY"
+echo "*************************************************************"
+for w in "02" "21" "3" "8" "31" "30" "17"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt | fst2word)
+    echo "$w = $res"
+done
+
+
+trans=month.fst
+echo "\n***********************************************************"
+echo "Testing DAY"
+echo "*************************************************************"
+for w in "02" "3" "8" "12" "1"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt | fst2word)
+    echo "$w = $res"
+done
 echo "\nThe end"
