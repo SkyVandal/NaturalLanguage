@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 mkdir -p compiled images
 
@@ -18,7 +18,6 @@ fstconcat compiled/mmm2mm.fst compiled/dumbparser.fst > compiled/mix2numerical.f
 fstconcat compiled/tradpt2en.fst compiled/dumbparser.fst > compiled/pt2en.fst
 # b) 4
 fstconcat compiled/traden2pt.fst compiled/dumbparser.fst > compiled/en2pt.fst
-
 
 
 
@@ -67,7 +66,7 @@ done
 
 trans=month.fst
 echo "\n***********************************************************"
-echo "Testing DAY"
+echo "Testing MONTH"
 echo "*************************************************************"
 for w in "02" "3" "8" "12" "1"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
@@ -76,3 +75,16 @@ for w in "02" "3" "8" "12" "1"; do
     echo "$w = $res"
 done
 echo "\nThe end"
+
+trans=year.fst
+echo "\n***********************************************************"
+echo "Testing YEAR"
+echo "*************************************************************"
+for w in "2001" "2020" "2039" "2045" "2050" "2067" "2079" "2083" "2099"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
+    echo "$w = $res"
+done
+echo "\nThe end"
+

@@ -1,0 +1,134 @@
+0 1 2 two
+1 2 0 thousand
+
+2 10 0 and
+10 1000 1 one
+10 1000 2 two
+10 1000 3 three
+10 1000 4 four
+10 1000 5 five
+10 1000 6 six
+10 1000 7 seven
+10 1000 8 eight
+10 1000 9 nine
+
+2 100 1 and
+100 1000 0 ten
+100 1000 1 eleven
+100 1000 2 twelve
+100 1000 3 thirteen
+100 1000 4 fourteen
+100 1000 5 fifteen
+100 1000 6 sixteen
+100 1000 7 seventeen
+100 1000 8 eighteen
+100 1000 9 nineteen
+
+2 200 2 and
+200 1000 0 twenty
+200 1201 1 twenty
+200 1202 2 twenty
+200 1203 3 twenty
+200 1204 4 twenty
+200 1205 5 twenty
+200 1206 6 twenty
+200 1207 7 twenty
+200 1208 8 twenty
+200 1209 9 twenty
+
+1201 1000 eps one
+1202 1000 eps two
+1203 1000 eps three
+1204 1000 eps four
+1205 1000 eps five
+1206 1000 eps six
+1207 1000 eps seven
+1208 1000 eps eight
+1209 1000 eps nine
+
+
+2 300 3 and
+300 1000 0 thirty
+300 1201 1 thirty
+300 1202 2 thirty
+300 1203 3 thirty
+300 1204 4 thirty
+300 1205 5 thirty
+300 1206 6 thirty
+300 1207 7 thirty
+300 1208 8 thirty
+300 1209 9 thirty
+
+2 400 4 and
+400 1000 0 forty
+400 1201 1 forty
+400 1202 2 forty
+400 1203 3 forty
+400 1204 4 forty
+400 1205 5 forty
+400 1206 6 forty
+400 1207 7 forty
+400 1208 8 forty
+400 1209 9 forty
+
+2 500 5 and
+500 1000 0 fifty
+500 1201 1 fifty
+500 1202 2 fifty
+500 1203 3 fifty
+500 1204 4 fifty
+500 1205 5 fifty
+500 1206 6 fifty
+500 1207 7 fifty
+500 1208 8 fifty
+500 1209 9 fifty
+
+2 600 6 and
+600 1000 0 sixty
+600 1201 1 sixty
+600 1202 2 sixty
+600 1203 3 sixty
+600 1204 4 sixty
+600 1205 5 sixty
+600 1206 6 sixty
+600 1207 7 sixty
+600 1208 8 sixty
+600 1209 9 sixty
+
+2 700 7 and
+700 1000 0 seventy
+700 1201 1 seventy
+700 1202 2 seventy
+700 1203 3 seventy
+700 1204 4 seventy
+700 1205 5 seventy
+700 1206 6 seventy
+700 1207 7 seventy
+700 1208 8 seventy
+700 1209 9 seventy
+
+2 800 8 and
+800 1000 0 eighty
+800 1201 1 eighty
+800 1202 2 eighty
+800 1203 3 eighty
+800 1204 4 eighty
+800 1205 5 eighty
+800 1206 6 eighty
+800 1207 7 eighty
+800 1208 8 eighty
+800 1209 9 eighty
+
+2 900 9 and
+900 1000 0 ninety
+900 1201 1 ninety
+900 1202 2 ninety
+900 1203 3 ninety
+900 1204 4 ninety
+900 1205 5 ninety
+900 1206 6 ninety
+900 1207 7 ninety
+900 1208 8 ninety
+900 1209 9 ninety
+
+1000
