@@ -27,9 +27,19 @@ fstconcat compiled/monthday.fst compiled/slash2coma.fst > compiled/monthdayslash
 fstconcat compiled/monthdayslash.fst compiled/year.fst > compiled/datenum2text.fst
 
 # d) 9
+fstcompose compiled/mmm2mm.fst compiled/month.fst > compiled/mmm2text.fst
+fstconcat compiled/mmm2text.fst compiled/slashparser.fst > compiled/monthslash.fst
+fstconcat compiled/monthslash.fst compiled/day.fst > compiled/monthday.fst
+fstconcat compiled/monthday.fst compiled/slash2coma.fst > compiled/monthdayslash.fst
+fstconcat compiled/monthdayslash.fst compiled/year.fst > compiled/mix2text.fst
 
-
-
+# d) 10
+fstunion compiled/pt2en.fst compiled/mmm2mm.fst > compiled/translated.fst
+fstcompose compiled/translated.fst compiled/month.fst > compiled/mmm2text.fst
+fstconcat compiled/mmm2text.fst compiled/slashparser.fst > compiled/monthslash.fst
+fstconcat compiled/monthslash.fst compiled/day.fst > compiled/monthday.fst
+fstconcat compiled/monthday.fst compiled/slash2coma.fst > compiled/monthdayslash.fst
+fstconcat compiled/monthdayslash.fst compiled/year.fst > compiled/date2text.fst
 
 
 # ############ generate PDFs  ############
@@ -111,7 +121,43 @@ trans=datenum2text.fst
 echo "\n***********************************************************"
 echo "Testing datenum2text.fst"
 echo "*************************************************************"
-for w in "09/15/2055"; do
+for w in "09/15/2075"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
+    echo "$w = $res"
+done
+echo "\nThe end"
+
+trans=mix2text.fst
+echo "\n***********************************************************"
+echo "Testing mix2text.fst"
+echo "*************************************************************"
+for w in "MAY/15/2075"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
+    echo "$w = $res"
+done
+echo "\nThe end"
+
+trans=date2text.fst
+echo "\n***********************************************************"
+echo "Testing date2text.fst EN"
+echo "*************************************************************"
+for w in "MAY/15/2075"; do
+    res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
+                       fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
+                       fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
+    echo "$w = $res"
+done
+echo "\nThe end"
+
+trans=date2text.fst
+echo "\n***********************************************************"
+echo "Testing date2text.fst PT"
+echo "*************************************************************"
+for w in "MAI/15/2075"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
