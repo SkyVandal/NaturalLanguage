@@ -5,7 +5,7 @@ mkdir -p compiled images
 rm -f ./compiled/*.fst ./images/*.pdf
 
 # ############ Compile source transducers ############
-for i in sources/*.txt; do
+for i in sources/*.txt tests/*.txt; do
 	echo "Compiling: $i"
     fstcompile --isymbols=syms.txt --osymbols=syms.txt $i | fstarcsort > compiled/$(basename $i ".txt").fst
 done
@@ -62,7 +62,7 @@ trans=mix2numerical.fst
 echo "\n***********************************************************"
 echo "Testing mix2numerical.fst"
 echo "*************************************************************"
-for w in "SEP/20/2018"; do
+for w in "JAN/12/1999" "MAR/06/1998"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt | fst2word)
@@ -73,7 +73,7 @@ trans=en2pt.fst
 echo "\n***********************************************************"
 echo "Testing EN2PT"
 echo "*************************************************************"
-for w in "MAY/01/2023"; do
+for w in "JAN/12/1999" "MAR/06/1998"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt | fst2word)
@@ -121,7 +121,7 @@ trans=datenum2text.fst
 echo "\n***********************************************************"
 echo "Testing datenum2text.fst"
 echo "*************************************************************"
-for w in "09/15/2075"; do
+for w in "JAN/12/1999" "MAR/06/1998"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
@@ -133,7 +133,7 @@ trans=mix2text.fst
 echo "\n***********************************************************"
 echo "Testing mix2text.fst"
 echo "*************************************************************"
-for w in "MAY/15/2075"; do
+for w in "JAN/12/1999" "MAR/06/1998"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)
@@ -145,7 +145,7 @@ trans=date2text.fst
 echo "\n***********************************************************"
 echo "Testing date2text.fst EN"
 echo "*************************************************************"
-for w in "MAY/15/2075"; do
+for w in "JAN/12/1999" "MAR/06/1998"; do
     res=$(python3 ./scripts/word2fst.py $w | fstcompile --isymbols=syms.txt --osymbols=syms.txt | fstarcsort |
                        fstcompose - compiled/$trans | fstshortestpath | fstproject --project_type=output |
                        fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./scripts/syms-out.txt | fst2word)

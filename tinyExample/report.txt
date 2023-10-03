@@ -1,0 +1,5 @@
+//TODO - tirar tudo da diretoria /tinyExample e apagar esta diretoria
+
+We decided to do our testing part using the third testing option from the original "run.sh".
+All our tests are done within the run.sh file, so we did not have the need to create test files in the /tests directory.
+When running the "run.sh" file all the test cases will be displayed as the output in the terminal.

@@ -5,7 +5,7 @@ import re
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser(description="Converts a word into an FST")
-    PARSER.add_argument("-s", dest="symbols", default="syms.txt", help="file containing the symbols")
+    PARSER.add_argument("-s", dest="symbols", default="../syms.txt", help="file containing the symbols")
     PARSER.add_argument('word', help='a word')
     args = PARSER.parse_args()
 
